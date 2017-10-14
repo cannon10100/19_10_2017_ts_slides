@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Robotic Reinforcement Learning</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -24,8 +24,62 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+                <!-- Slide 1 -->
+				<section>
+                    <h1>Motion Planning for Structured Exploration in Robotic Reinforcement Learning</h1>
+
+                    <h2><a href="http://cannontwo.com">Cannon Lewis</a></h3>
+                </section>
+                <!-- Slide 2 -->
+                <section>
+                    <h3>Introduction</h2>
+                </section>
+                <!-- Slide 3 -->
+				<section>
+                    <h3>Configuration Spaces & Robots</h3>
+                    <p>Give classic examples, show inflated obstacles in configuration space.</p>
+                    <p>Relate to Baxter, Sawyer.</p>
+                    <p>Talk about reasons to care about robots (cast trading as similar configuration space).</p>
+                </section>
+                <!-- Slide 4 -->
+				<section>
+                    <h3>Motion Planning</h3>
+                    <p>Search through configuration space of robot.</p>
+                    <p>Typical search algorithms don't work due to continuity/size of discretization.</p>
+                    <p>Sampling-based planning, OMPL (PRM, RRT, SyClop, mention Lydia)</p>
+                    <p>Task-and-Motion planning, TMKit</p>
+                </section>
+                <!-- Slide 5 -->
+				<section>
+                    <h3>Reinforcement Learning</h3>
+                    <p>MDP formalism (brief)</p>
+                    <p>Gridworld example, continuous control tasks.</p>
+                    <p>OpenAI Gym, limitations due to computational complexity for tabular approaches</p>
+                </section>
+                <!-- Slide 6 -->
+				<section>
+                    <h3>Deep Reinforcement Learning</h3>
+                    <p>Focus on DQN, DDPG</p>
+                    <p>Function approximation as a way of dealing with continuity, high-dimensionality</p>
+                </section>
+                <!-- Slide 7 -->
+				<section>
+                    <h3>Robotic Reinforcement Learning</h3>
+                    <p>Existing solutions make simplifications to state, action space.</p>
+                    <p>Want to use the full robot spaces for full generality</p>
+                </section>
+                <!-- Slide 8 -->
+				<section>
+                    <h3>Motion Planning as Structured Exploration</h3>
+                    <p>Problems with exploration as in previous section.</p>
+                    <p>Motion planning as structured exploration</p>
+                    <p>Show gif of actual sim.</p>
+                </section>
+                <!-- Slide 9 -->
+				<section>
+                    <h3>Distributed Experimentation</h3>
+                    <p>Deepmind's unpublished architecture, Google scale, etc.</p>
+                </section>
 			</div>
 		</div>
 
@@ -37,11 +91,17 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+                slideNumber: true,
+                math: {
+					// mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/math/math.js', async: true }
 				]
 			});
 		</script>
