@@ -23,71 +23,137 @@
 	</head>
 	<body>
 		<div class="reveal">
-            <header class="reveal" style="position: absolute;top: 50px; left: 100px; z-index:500;"><h3></h3></header>
+            <header style="position: absolute;top: 50px; left: 100px; z-index:500;"><h3></h3></header>
+            <footer style="position: absolute;bottom: 50px;right:150px; z-index:500;"><small></small></footer>
 			<div class="slides">
-                <!-- Slide 1 -->
+                <!-- Title slide -->
 				<section>
                     <h2>Motion Planning for Structured Exploration in Robotic Reinforcement Learning</h2>
                     <h3 style="text-align:center"><a href="http://cannontwo.com">Cannon Lewis</a></h3>
                 </section>
-                <!-- Slide 2 -->
+                <!-- Section 1 -->
                 <section data-state="header1">
                     <style>.header1 header h3:after { content: "Introduction"; }</style>
-                    <div style="width:50%;float:left">
-                        <h4 style="text-align:left">Who Am I?</h4>
+                    <div style="width:35%;float:left">
+                        <img style="margin-top:0px;max-height:500px;width:auto" src="http://cannontwo.com/assets/face.jpg"/>
+                    </div>
+                    <div style="margin-left:5%;width:60%;float:left">
+                        <h4>Who Am I?</h4>
                         <p>Senior at Rice University</p>
                         <p>Majoring in Computer Science and Mathematics</p>
                         <p>Currently applying to artificial intelligence PhD programs</p>
-                    </div>
-                    <div style="width:50%;float:left">
-                        <h4 style="text-align:left">Why Am I Here?</h4>
+                        <h4>Why Am I Here?</h4>
                         <p>Took COMP 311: Functional Programming from Dr. Eric Allen</p>
                         <p>Interned at Two Sigma during Summer 2016</p>
                         <p>Currently doing research with Dr. Lydia Kavraki</p>
                     </div>
                 </section>
-                <!-- Slide 3 -->
+                <!-- Section 2 -->
 				<section data-state="header2">
-                    <style>.header2 header h3:after { content: "Configuration Spaces & Robots"; }</style>
-                    <p>Give classic examples, show inflated obstacles in configuration space.</p>
-                    <p>Relate to Baxter, Sawyer.</p>
-                    <p>Talk about reasons to care about robots (cast trading as similar configuration space).</p>
+                    <style>.header2 header h3:after { content: "Robots & Configuration Spaces"; }</style>
+                    <div style="width:30%;float:left">
+                        <img style="max-height:200px;width:auto" src="assets/ur5.png"/>
+                        <img style="max-height:200px;width:auto" src="assets/robonaut.jpg"/>
+                    </div>
+                    <div style="width:25%;float:left">
+                        <img style="max-height:200px;width:auto" src="assets/fetch.jpg"/> 
+                        <img style="max-height:200px;width:auto" src="assets/baxter.jpg"/>
+                    </div>
+                    <div style="margin-left:5%;width:40%;float:left">
+                        <h4>So Many Robots!</h4>
+                        <p>Excitement due to recent advances in artificial intelligence</p>
+                        <p>New use cases in medicine, search and rescue</p>
+                        <p>New kinds of robots (e.g. drones, "safe" robotics, nanorobots)</p>
+                        <p>We need to be able to plan motions for these robots in the presence of obstacles</p>
+                        <p>But how do we work with these very different robots?</p>
+                    </div>
                 </section>
-                <!-- Slide 4 -->
+                <section data-state="header2">
+                    <h4>Configuration Spaces</h4>
+                    <p>In order to plan for the wide array of robots that exist, we need an abstraction, which we call the "configuration space"</p>
+                    <p>Even though our robots operate in $\mathbb{R}^3$, the space of movements for a robot is more accurately represented by $\mathbb{R}^6$, or even $T^6$</p>
+                    <p>Under this abstraction, we can consider certain robots as being equivalent</p>
+                    <table><tr valign="center">
+                        <td><img style="max-height:175px;width:auto" src="assets/ur5.png"/></td>
+                        <td style="vertical-align:middle"><h5 style="display:inline-block">$\approx$</h5></td>
+                        <td><img style="max-height:175px;width:auto" src="assets/sawyer.jpg"/></td>
+                    </tr></table>
+                </section>
+                <section data-state="header2 footer1">
+                    <style>.footer1 footer small:after { content: "http://www.sciencedirect.com/science/article/pii/S2095809916300443"; }</style>
+                    <img style="width:80%;height:auto;" src="assets/cfgspace.jpg"/>
+                </section>
+                <!-- Section 3 -->
 				<section data-state="header3">
                     <style>.header3 header h3:after { content: "Motion Planning"; }</style>
-                    <p>Search through configuration space of robot.</p>
-                    <p>Typical search algorithms don't work due to continuity/size of discretization.</p>
-                    <p>Sampling-based planning, OMPL (PRM, RRT, SyClop, mention Lydia)</p>
-                    <p>Task-and-Motion planning, TMKit</p>
+                    <!-- <p>Search through configuration space of robot.</p> -->
+                    <!-- <p>Typical search algorithms don't work due to continuity/size of discretization.</p> -->
+                    <!-- <p>Sampling-based planning, OMPL (PRM, RRT, SyClop, mention Lydia)</p> -->
+                    <!-- <p>Task-and-Motion planning, TMKit</p> -->
+                    <h4>Robot Motion is Difficult</h4>
+                    <p>As we have seen, the configuration space can look very different from the 3D world that we are used to</p>
+                    <p>Search in this space is difficult due to
+                    <ol>
+                        <li>High dimensionality</li>
+                        <li>Continuity</li>
+                        <li>Limited computational resources</li>
+                    </ol>
+                    <p>These issues prevent us from using traditional search and planning methods</p>
                 </section>
-                <!-- Slide 5 -->
+                <section data-state="header3 footer2">
+                    <style>.footer2 footer small:after { content: "https://www.intechopen.com/books/autonomous-vehicle/application-of-sampling-based-motion-planning-algorithms-in-autonomous-vehicle-navigation"; }</style>
+                    <div style="width:65%;float:left">
+                        <h4>Sampling-based Motion Planning</h4>
+                        <p>Instead of searching through the configuration space directly or discretizing the space, we build an implicit roadmap by sampling</p>
+                        <p style="margin-bottom:5px;">Algorithms in this vein have revolutionized robot motion planning, and are now the dominant method</p>
+                        <ul style="text-align:left;margin-left:40px;"><li>These algorithms are fully general - they can plan for any robot whose configuration space is connected</li></ul>
+                        <p>Algorithms for SBMP such as PRM, RRT, KPIECE, and more are available out-of-the-box in my lab's <a href="http://ompl.kavrakilab.org/">OMPL</a> library</p>
+                    </div>
+                    <div style="width:35%;padding-top:50px;float:left;vertical-align:middle;">
+                        <img style="max-height:300px;width:auto;transform:rotate(90deg)" src="assets/prm.png"/>
+                    </div>
+                </section>
+                <section data-state="header3 footer3">
+                    <style>.footer3 footer small:after { content: "http://tmkit.kavrakilab.org/"; }</style>
+                    <div style="width:65%;float:left;">
+                        <h4>High-level Task Planning</h4>
+                        <p>In addition to making low-level motion plans, we would like to solve high-level tasks</p>
+                        <p>For example, in tabletop manipulation we would like to simply tell the robot where to place dishes, instead of specifying how to move its arm for each motion</p>
+                        <p><a href="http://tmkit.kavrakilab.org/">TMKit</a> is a project from our lab that performs this planning incrementally</p>
+                        <p>Unfortunately, even abstract problem solving is PSPACE-complete, so exact Task-and-Motion Planning is intractable in many cases</p>
+                        
+                    </div>
+                    <div style="width:35%;float:left;">
+                        <img style="max-width:300px;height:auto;" src="assets/tmkit.jpg"/>
+                    </div>  
+                </section>
+                <!-- Section 4 -->
 				<section data-state="header4">
                     <style>.header4 header h3:after { content: "Reinforcement Learning"; }</style>
                     <p>MDP formalism (brief)</p>
                     <p>Gridworld example, continuous control tasks.</p>
                     <p>OpenAI Gym, limitations due to computational complexity for tabular approaches</p>
                 </section>
-                <!-- Slide 6 -->
+                <!-- Section 5 -->
 				<section data-state="header5">
                     <style>.header5 header h3:after { content: "Deep Reinforcement Learning"; }</style>
                     <p>Focus on DQN, DDPG</p>
                     <p>Function approximation as a way of dealing with continuity, high-dimensionality</p>
                 </section>
-                <!-- Slide 7 -->
+                <!-- Section 6 -->
 				<section data-state="header6">
                     <style>.header6 header h3:after { content: "Robotic Reinforcement Learning"; }</style>
                     <p>Existing solutions make simplifications to state, action space.</p>
                     <p>Want to use the full robot spaces for full generality</p>
                 </section>
-                <!-- Slide 8 -->
+                <!-- Section 7 -->
 				<section data-state="header7">
                     <style>.header7 header h3:after { content: "Motion Planning as Structured Exploration"; }</style>
                     <p>Problems with exploration as in previous section.</p>
                     <p>Motion planning as structured exploration</p>
                     <p>Show gif of actual sim.</p>
                 </section>
-                <!-- Slide 9 -->
+                <!-- Section 8 -->
 				<section data-state="header8">
                     <style>.header8 header h3:after { content: "Distributed Experimentation"; }</style>
                     <p>Deepmind's unpublished architecture, Google scale, etc.</p>
@@ -105,6 +171,7 @@
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
                 slideNumber: true,
+                history: true,
                 math: {
 					// mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
 					config: 'TeX-AMS_HTML-full'
