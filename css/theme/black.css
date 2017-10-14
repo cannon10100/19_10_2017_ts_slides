@@ -55,12 +55,17 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 3em; }
+  font-size: 3em; 
+  color: #b58900;
+}
 
 .reveal h2 {
-  font-size: 2.11em; }
+  color: #b58900;
+  font-size: 2.11em; 
+}
 
 .reveal h3 {
+  color: #b58900;
   text-align: left;
   font-size: 1.55em; 
 }

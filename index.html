@@ -23,62 +23,75 @@
 	</head>
 	<body>
 		<div class="reveal">
+            <header class="reveal" style="position: absolute;top: 50px; left: 100px; z-index:500;"><h3></h3></header>
 			<div class="slides">
                 <!-- Slide 1 -->
 				<section>
-                    <h1>Motion Planning for Structured Exploration in Robotic Reinforcement Learning</h1>
-
-                    <h2><a href="http://cannontwo.com">Cannon Lewis</a></h3>
+                    <h2>Motion Planning for Structured Exploration in Robotic Reinforcement Learning</h2>
+                    <h3 style="text-align:center"><a href="http://cannontwo.com">Cannon Lewis</a></h3>
                 </section>
                 <!-- Slide 2 -->
-                <section>
-                    <h3>Introduction</h2>
+                <section data-state="header1">
+                    <style>.header1 header h3:after { content: "Introduction"; }</style>
+                    <div style="width:50%;float:left">
+                        <h4 style="text-align:left">Who Am I?</h4>
+                        <p>Senior at Rice University</p>
+                        <p>Majoring in Computer Science and Mathematics</p>
+                        <p>Currently applying to artificial intelligence PhD programs</p>
+                    </div>
+                    <div style="width:50%;float:left">
+                        <h4 style="text-align:left">Why Am I Here?</h4>
+                        <p>Took COMP 311: Functional Programming from Dr. Eric Allen</p>
+                        <p>Interned at Two Sigma during Summer 2016</p>
+                        <p>Currently doing research with Dr. Lydia Kavraki</p>
+                    </div>
                 </section>
                 <!-- Slide 3 -->
-				<section>
-                    <h3>Configuration Spaces & Robots</h3>
+				<section data-state="header2">
+                    <style>.header2 header h3:after { content: "Configuration Spaces & Robots"; }</style>
                     <p>Give classic examples, show inflated obstacles in configuration space.</p>
                     <p>Relate to Baxter, Sawyer.</p>
                     <p>Talk about reasons to care about robots (cast trading as similar configuration space).</p>
                 </section>
                 <!-- Slide 4 -->
-				<section>
-                    <h3>Motion Planning</h3>
+				<section data-state="header3">
+                    <style>.header3 header h3:after { content: "Motion Planning"; }</style>
                     <p>Search through configuration space of robot.</p>
                     <p>Typical search algorithms don't work due to continuity/size of discretization.</p>
                     <p>Sampling-based planning, OMPL (PRM, RRT, SyClop, mention Lydia)</p>
                     <p>Task-and-Motion planning, TMKit</p>
                 </section>
                 <!-- Slide 5 -->
-				<section>
-                    <h3>Reinforcement Learning</h3>
+				<section data-state="header4">
+                    <style>.header4 header h3:after { content: "Reinforcement Learning"; }</style>
                     <p>MDP formalism (brief)</p>
                     <p>Gridworld example, continuous control tasks.</p>
                     <p>OpenAI Gym, limitations due to computational complexity for tabular approaches</p>
                 </section>
                 <!-- Slide 6 -->
-				<section>
-                    <h3>Deep Reinforcement Learning</h3>
+				<section data-state="header5">
+                    <style>.header5 header h3:after { content: "Deep Reinforcement Learning"; }</style>
                     <p>Focus on DQN, DDPG</p>
                     <p>Function approximation as a way of dealing with continuity, high-dimensionality</p>
                 </section>
                 <!-- Slide 7 -->
-				<section>
-                    <h3>Robotic Reinforcement Learning</h3>
+				<section data-state="header6">
+                    <style>.header6 header h3:after { content: "Robotic Reinforcement Learning"; }</style>
                     <p>Existing solutions make simplifications to state, action space.</p>
                     <p>Want to use the full robot spaces for full generality</p>
                 </section>
                 <!-- Slide 8 -->
-				<section>
-                    <h3>Motion Planning as Structured Exploration</h3>
+				<section data-state="header7">
+                    <style>.header7 header h3:after { content: "Motion Planning as Structured Exploration"; }</style>
                     <p>Problems with exploration as in previous section.</p>
                     <p>Motion planning as structured exploration</p>
                     <p>Show gif of actual sim.</p>
                 </section>
                 <!-- Slide 9 -->
-				<section>
-                    <h3>Distributed Experimentation</h3>
+				<section data-state="header8">
+                    <style>.header8 header h3:after { content: "Distributed Experimentation"; }</style>
                     <p>Deepmind's unpublished architecture, Google scale, etc.</p>
+                    <p>Using AWS, ROS, OpenAI Gym, and Python to create an (eventually) open-source alternative.</p>
                 </section>
 			</div>
 		</div>
