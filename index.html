@@ -183,8 +183,8 @@
                     <style>.footer6 footer small:after { content: "https://deepmind.com/research/dqn/"; }</style>
                     <div style="width:65%;float:left">
                         <h4>Q-Function Learning: DQN</h4>
-                        <p>Recall from the slides on basic RL that the Q-function encodes how valuable actions in each state are</p>
-                        <p>If we use a neural network to represent our $Q^\pi(s,a)$, we can essentially do supervised learning using rewards we get from the MDP</p>
+                        <p>The Q-function encodes how valuable actions in each state are</p>
+                        <p>If we use a neural network to represent our $Q^\pi(s,a)$, we can do supervised learning using rewards we get from the MDP</p>
                         <p>This leads naturally to the Deep Q-Network algorithm, which was published by Google Deepmind in 2015</p>
                         <p>However, DQN is limited to discrete action spaces</p>
                     </div>
@@ -236,10 +236,12 @@
                 </section>
                 <section data-state="header6">
                     <h4>Current Problems</h4>
-                    <p>For more complex tasks, we need to be able to learn robot policies involving all joints in the robot</p>
-                    <p>For difficult or dangerous tasks, it may not be feasible to provide human expert demonstration</p>
-                    <p>Furthermore, the precise difficulty of RRL is not fully known right now</p>
-                    <p>Experimental setups tend to be ad hoc, involve unreported engineering effort, and unreproducible</p>
+                    <ol>
+                        <li>For more complex tasks, we need to be able to learn robot policies involving all joints in the robot</p>
+                        <li>For difficult or dangerous tasks, it may not be feasible to provide human expert demonstration</p>
+                        <li>Furthermore, the precise difficulty of RRL is not fully known right now</p>
+                        <li>Experimental setups tend to be ad hoc, involve unreported engineering effort, and unreproducible</p>
+                    </ol>
                 </section>
                 <!-- Section 7 -->
 				<section data-state="header7">
@@ -283,7 +285,7 @@
                 </section>
                 <!-- Section 8 -->
 				<section data-state="header8">
-                    <style>.header8 header h3:after { content: "Distributed Experimentation"; }</style>
+                    <style>.header8 header h3:after { content: "Experimentation"; }</style>
                     <!-- <p>Deepmind's unpublished architecture, Google scale, etc.</p> -->
                     <!-- <p>Using AWS, ROS, OpenAI Gym, and Python to create an (eventually) open-source alternative.</p> -->
                     <h4>RRL Experimentation is Difficult</h4>
@@ -320,12 +322,15 @@
                         <p>In this talk, I have mentioned Google Deepmind several times</p>
                         <p>One of their main research advantages is a distributed RL system that they call "Gorila"</p>
                         <p>Deepmind has not released this system design to the public</p>
-                        <p>Proprietary advantages like this inhibit the progress of research</p>
-                        <p>I built a small analogous system using Docker and Amazon Web Services, but it took me several months</p>
+                        <p>Proprietary advantages like this inhibit the progress of research in RL</p>
+                        <p>I built a similar small distributed system using Docker and Amazon Web Services for my research</p>
                     </div>
                     <div style="width:40%;float:left">
                         <img style="margin-left:50px" src="assets/gorila.png"/>
                     </div>
+                </section>
+                <section>
+                    <h1>Thank You</h1>
                 </section>
 			</div>
 		</div>
