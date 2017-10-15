@@ -86,10 +86,6 @@
                 <!-- Section 3 -->
 				<section data-state="header3">
                     <style>.header3 header h3:after { content: "Motion Planning"; }</style>
-                    <!-- <p>Search through configuration space of robot.</p> -->
-                    <!-- <p>Typical search algorithms don't work due to continuity/size of discretization.</p> -->
-                    <!-- <p>Sampling-based planning, OMPL (PRM, RRT, SyClop, mention Lydia)</p> -->
-                    <!-- <p>Task-and-Motion planning, TMKit</p> -->
                     <h4>Robot Motion is Difficult</h4>
                     <p>As we have seen, the configuration space can look very different from the 3D world that we are used to</p>
                     <p>Search in this space is difficult due to
@@ -130,15 +126,71 @@
                 <!-- Section 4 -->
 				<section data-state="header4">
                     <style>.header4 header h3:after { content: "Reinforcement Learning"; }</style>
-                    <p>MDP formalism (brief)</p>
-                    <p>Gridworld example, continuous control tasks.</p>
-                    <p>OpenAI Gym, limitations due to computational complexity for tabular approaches</p>
+                    <div style="width:45%;float:left">
+                        <h4>Theoretical Basics</h4>
+                        <p>RL is a form of machine learning in which a learning agent is provided with a real-valued reward function in response to its actions</p>
+                        <p>RL stems from research into Markov Decision Processes (MDPs)</p>
+                        <p>Goal is to build an agent which can learn a maximizing policy $\pi(s,a)$ for an arbitrary MDP that the agent is interacting with</p>
+                    </div>
+                    <div style="width:45%;float:left;margin-left:10%">
+                        <h4>What is an MDP?</h4>
+                        <ul>
+                            <li>A set of states $S$, set of actions $A$.</li>
+                            <li>Stochastic transition function $P_a(s, s')$</li>
+                            <li>Reward function $R(s, a, s')$</li>
+                        </ul>
+                        <h4 style="margin-top:10px">Value Functions</h4>
+                        <p>For elementary solution methods we care about:</p>
+                        <ul>
+                            <li>$V^\pi(s) = \mathbf{E}_\pi\{R_t | s_t = s\} = \mathbf{E}_\pi\left\{\sum_{k=0}^{\infty}\gamma^kr_{t+k+1} | s_t = s\right\}$</li>
+                            <li>$Q^\pi(s, a) = \mathbf{E}_\pi\{R_t | s_t = s, a_t = a\}$<br/> &emsp; &emsp;&emsp;&emsp;$= \mathbf{E}_\pi\left\{\sum_{k=0}^{\infty}\gamma^kr_{t+k+1} | s_t = s, a_t = a\right\}$</li>
+                        </ul>
+                    </div>
+                </section>
+                <section data-state="header4 footer4">
+                    <style>.footer4 footer small:after { content: "http://cs.stanford.edu/people/karpathy/reinforcejs/"; }</style>
+                    <h4>Gridworld</h4>
+                    <a href="http://cs.stanford.edu/people/karpathy/reinforcejs/"><img src="assets/gridworld.jpeg"/></a>
+                </section>
+                <section data-state="header4">
+                    <h4>Simple Control</h4>
+                    <img src="https://thumbs.gfycat.com/CluelessLittleAttwatersprairiechicken-size_restricted.gif"/>
+                </section>
+                <section data-state="header4">
+                    <h4>RL Toolchain</h4>
+                    <p>Due to recent high-profile reinforcement learning results, many open-source RL libraries are available</p>
+                    <p>Prominent among these is <a href="https://github.com/openai/gym">OpenAI Gym</a>. Inexplicably, this project seems to have been abandoned recently</p>
+                    <p>OpenAI also created <a href="https://github.com/openai/universe">Universe</a> and <a href="https://github.com/openai/roboschool">RoboSchool</a>, but these are similarly poorly maintained</p>
+                    <p><a href="https://githubcom/SerpentAI/SerpentAI">Serpent AI</a> is a high-quality recent addition to this landscape, originating from frustration with OpenAI Universe</p>
                 </section>
                 <!-- Section 5 -->
-				<section data-state="header5">
+				<section data-state="header5 footer5">
                     <style>.header5 header h3:after { content: "Deep Reinforcement Learning"; }</style>
-                    <p>Focus on DQN, DDPG</p>
-                    <p>Function approximation as a way of dealing with continuity, high-dimensionality</p>
+                    <style>.footer5 footer small:after { content: "http://karpathy.github.io/2016/05/31/rl/"; }</style>
+                    <div style="width:65%;float:left;">
+                        <h4>Limitations of Naive RL</h4>
+                        <p>Exact solution is prohibitively expensive in both time and space for general MDPs</p>
+                        <p>Furthermore, an enumerative approach to value function calculation is incompatible with continuous state or action spaces</p>
+                        <h4 style="margin-top:10px">Deep Learning</h4>
+                        <p>To overcome these difficulties, we introduce function approximation, typically through neural networks</p>
+                        <p>We can parameterize either the value functions or the policy as a neural network, then use typical gradient descent techniques to train our RL agent</p>
+                    </div>
+                    <div style="width:35%;float:left;">
+                        <img style="margin-top:100px;margin-left:50px" src="assets/deeprl.png"/>
+                    </div>
+                </section>
+                <section data-state="header5 footer6">
+                    <style>.footer6 footer small:after { content: "https://deepmind.com/research/dqn/"; }</style>
+                    <div style="width:65%;float:left">
+                        <h4>Q-Function Learning: DQN</h4>
+                        <p>Recall from the slides on basic RL that the Q-function encodes how valuable actions in each state are</p>
+                        <p>If we use a neural network to represent our $Q^\pi(s,a)$, we can essentially do supervised learning using rewards we get from the MDP</p>
+                        <p>This leads naturally to the Deep Q-Network algorithm, which was published by Google Deepmind in 2015</p>
+                        <p>DQN is limited to discrete action spaces</p>
+                    </div>
+                    <div style="width:35%;float:left">
+                        <img style="margin-left:50px" src="assets/dqn.jpg"/>
+                    </div>
                 </section>
                 <!-- Section 6 -->
 				<section data-state="header6">
