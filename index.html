@@ -192,11 +192,32 @@
                         <img style="margin-left:50px" src="assets/dqn.jpg"/>
                     </div>
                 </section>
+                <section data-state="header5 footer7">
+                    <style>.footer7 footer small:after { content: "https://arxiv.org/abs/1509.02971"; }</style>
+                    <div style="width:65%;float:left">
+                        <h4>Continuous Action Spaces: DDPG</h4>
+                        <p>To deal with continuous action spaces, we need to represent our policy by a neural network</p>
+                        <p>The Deep Deterministic Policy Gradients algorithms stems from this observation and naive "actor-critic" methods</p>
+                        <p>DDPG is also a recent (2016) result out of Deepmind</p>
+                        <p>Now, we are finally (theoretically) capable of tackling robotic control tasks</p>
+                    </div>
+                    <div style="width:35%;float:left">
+                        <img style="margin-left:50px;" src="assets/actor-critic.png"/>
+                    </div>
+                </section>
                 <!-- Section 6 -->
-				<section data-state="header6">
+				<section data-state="header6 footer8">
                     <style>.header6 header h3:after { content: "Robotic Reinforcement Learning"; }</style>
-                    <p>Existing solutions make simplifications to state, action space.</p>
-                    <p>Want to use the full robot spaces for full generality</p>
+                    <style>.footer8 footer small:after { content: "http://www.ias.tu-darmstadt.de/uploads/Publications/Kober_IJRR_2013.pdf"; }</style>
+                    <!-- <p>Existing solutions make simplifications to state, action space.</p> -->
+                    <!-- <p>Want to use the full robot spaces for full generality</p> -->
+                    <h4>Tractability Through Simplification</h4>
+                    <p>Most previous to 2015 in robotic reinforcement learning (RRL) simplified the task by modifying the action space</p>
+                    <ul style="text-align:left;margin-left:40px;">
+                        <li>Jans Kober's work into dynamical system action primitives</li>
+                        <li>Physics model-based approaches such as CMU's inverted helicopter research</li>
+                        <li>Various discretizations of the state and action space, which necessarily reduce accuracy of learned policies</li>
+                    </ul>
                 </section>
                 <!-- Section 7 -->
 				<section data-state="header7">
