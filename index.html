@@ -186,7 +186,7 @@
                         <p>Recall from the slides on basic RL that the Q-function encodes how valuable actions in each state are</p>
                         <p>If we use a neural network to represent our $Q^\pi(s,a)$, we can essentially do supervised learning using rewards we get from the MDP</p>
                         <p>This leads naturally to the Deep Q-Network algorithm, which was published by Google Deepmind in 2015</p>
-                        <p>DQN is limited to discrete action spaces</p>
+                        <p>However, DQN is limited to discrete action spaces</p>
                     </div>
                     <div style="width:35%;float:left">
                         <img style="margin-left:50px" src="assets/dqn.jpg"/>
@@ -209,28 +209,123 @@
 				<section data-state="header6 footer8">
                     <style>.header6 header h3:after { content: "Robotic Reinforcement Learning"; }</style>
                     <style>.footer8 footer small:after { content: "http://www.ias.tu-darmstadt.de/uploads/Publications/Kober_IJRR_2013.pdf"; }</style>
-                    <!-- <p>Existing solutions make simplifications to state, action space.</p> -->
-                    <!-- <p>Want to use the full robot spaces for full generality</p> -->
-                    <h4>Tractability Through Simplification</h4>
-                    <p>Most previous to 2015 in robotic reinforcement learning (RRL) simplified the task by modifying the action space</p>
-                    <ul style="text-align:left;margin-left:40px;">
-                        <li>Jans Kober's work into dynamical system action primitives</li>
-                        <li>Physics model-based approaches such as CMU's inverted helicopter research</li>
-                        <li>Various discretizations of the state and action space, which necessarily reduce accuracy of learned policies</li>
-                    </ul>
+                    <div style="width:50%;float:left">
+                        <h4>Tractability Through Simplification</h4>
+                        <p>Most research previous to 2015 in robotic reinforcement learning (RRL) simplified the task by modifying the action space</p>
+                        <ul style="text-align:left;margin-left:40px;">
+                            <li>Jans Kober's work into dynamical system motor primitives</li>
+                            <li>Physics model-based approaches such as CMU's inverted helicopter research</li>
+                            <li>Myriad discretizations of the state and action spaces</li>
+                        </ul>
+                    </div>
+                    <div style="width:50%;float:left">
+                        <iframe style="margin-left:40px" width="560" height="315" src="https://www.youtube.com/embed/rbSFlLtnMFM" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </section>
+                <section data-state="header6 footer9">
+                    <style>.footer9 footer small:after { content: "https://arxiv.org/pdf/1707.08817.pdf"; }</style>
+                    <div style="width:65%;float:left">
+                        <h4>Recent UC Berkeley, Deepmind Work</h4>
+                        <p>Groups at UC Berkeley and Google Deepmind have demonstrated success in using Deep RL for robotic tasks</p>
+                        <p>However, this research still tends to simplify the state and action space involved by using a subset of the robot's joints</p>
+                        <p>Even taking the reduced space, RRL can be intractable without human demonstration for initialization</p>
+                    </div>
+                    <div style="width:35%;float:left">
+                        <img src="assets/deepmind_robot.png"/>
+                    </div>
+                </section>
+                <section data-state="header6">
+                    <h4>Current Problems</h4>
+                    <p>For more complex tasks, we need to be able to learn robot policies involving all joints in the robot</p>
+                    <p>For difficult or dangerous tasks, it may not be feasible to provide human expert demonstration</p>
+                    <p>Furthermore, the precise difficulty of RRL is not fully known right now</p>
+                    <p>Experimental setups tend to be ad hoc, involve unreported engineering effort, and unreproducible</p>
                 </section>
                 <!-- Section 7 -->
 				<section data-state="header7">
                     <style>.header7 header h3:after { content: "Motion Planning as Structured Exploration"; }</style>
-                    <p>Problems with exploration as in previous section.</p>
-                    <p>Motion planning as structured exploration</p>
-                    <p>Show gif of actual sim.</p>
+                    <h4>Exploration</h4>
+                    <p>So far, we have avoided discussing exploration in RL</p>
+                    <p>The "exploration-exploitation" tradeoff is a big deal in theoretical results for RL</p>
+                    <p>In practice, most algorithms simply use some form of probabilistic noise as exploration</p>
+                    <p>For high-dimensional spaces, such as RRL, this is likely not sufficient</p>
+                </section>
+                <section data-state="header7">
+                    <div style="width:65%;float:left">
+                        <h4>Motion Planning as Exploration</h4>
+                        <p>Recall that sampling-based motion planning allows us to generate motion plans for arbitrary robots</p>
+                        <p>These motion plans are effectively structured, sustained exploration from the perspective of an RRL learner</p>
+                        <p>If we can correctly hook motion planning for exploration into existing deep RL methods, it could replace human demonstration</p>
+                        <p>Furthermore, this allows RRL to be environment-agnostic, a goal of reinforcement learning</p>
+                    </div>
+                    <div style="width:35%;float:left">
+                        <table style="margin-left:50px">
+                            <tr><td style="border:none"><img src="assets/moveit_logo.jpg"/></td></tr>
+                            <tr><td style="border:none;text-align:center"><h2>+</h2></td></tr>
+                            <tr><td><img src="assets/gym.png"/></td></tr>
+                        </table>
+                    </div>
+                </section>
+                <section data-state="header7">
+                    <!-- Show gif of Fetch -->
+                    <h4>Learning on a Fetch Robot</h4>
+                    <img src=""/>
+                </section>
+                <section data-state="header7">
+                    <!-- Show gif of UR5 -->
+                    <h4>Learning on a UR5 Robot</h4>
+                    <img src=""/>
+                </section>
+                <section data-state="header7">
+                    <!-- Show grid of failed experiments -->
+                    <h4>Hyperparameter Search is Difficult</h4>
+                    <img src=""/>
                 </section>
                 <!-- Section 8 -->
 				<section data-state="header8">
                     <style>.header8 header h3:after { content: "Distributed Experimentation"; }</style>
-                    <p>Deepmind's unpublished architecture, Google scale, etc.</p>
-                    <p>Using AWS, ROS, OpenAI Gym, and Python to create an (eventually) open-source alternative.</p>
+                    <!-- <p>Deepmind's unpublished architecture, Google scale, etc.</p> -->
+                    <!-- <p>Using AWS, ROS, OpenAI Gym, and Python to create an (eventually) open-source alternative.</p> -->
+                    <h4>RRL Experimentation is Difficult</h4>
+                    <p>As we have seen, many technical hurdles exist for the budding RRL researcher</p>
+                    <ul style="text-align:left;margin-left:-200px;">
+                        <li>Many tools are not open-source or not well-maintained</li>
+                        <li>Myriad hyperparameters must be tuned</li>
+                        <li>It is not well known where the difficult problems lie</li>
+                        <li>Most robotics researchers do not have Google-scale compute resources</li>
+                    </ul>
+                    <br/>
+                    <p>I intend to publish a paper soon dealing with the complexity of RRL for different numbers of joints</p>
+                    <p>Much, much more research is left in this area</p>
+                </section>
+                <section data-state="header8">
+                        <h4>Building an Open-Source Stack</h4>
+                        <p>I have used entirely open source tools</p>
+                        <p>Built my own versions of proprietary tools for experiment running</p>
+                        <p>Once I have published my research, I intend to open source my experiment code as well</p>
+                        <p>Continued open-source collaboration is necessary to progress in CS research</p>
+                        <table style="margin-left:50px">
+                            <tr>
+                            <td style="height:100px;width:auto;border:none"><img src="assets/gym.png"/></td>
+                            <td style="height:100px;width:auto;border:none"><img src="assets/ros.png"/></td>
+                            <td style="height:100px;width:auto;border:none"><img src="assets/moveit_logo.jpg"/></td>
+                            <td style="height:100px;width:auto;border:none"><img src="assets/docker.png"/></td>
+                            </tr>
+                        </table>
+                </section>
+                <section data-state="header8 footer10">
+                    <style>.footer10 footer small:after { content: "http://www.humphreysheil.com/blog/gorila-google-reinforcement-learning-architecture"; }</style>
+                    <div style="width:60%;float:left">
+                        <h4>A Case Against Proprietary Research Systems</h4>
+                        <p>In this talk, I have mentioned Google Deepmind several times</p>
+                        <p>One of their main research advantages is a distributed RL system that they call "Gorila"</p>
+                        <p>Deepmind has not released this system design to the public</p>
+                        <p>Proprietary advantages like this inhibit the progress of research</p>
+                        <p>I built a small analogous system using Docker and Amazon Web Services, but it took me several months</p>
+                    </div>
+                    <div style="width:40%;float:left">
+                        <img style="margin-left:50px" src="assets/gorila.png"/>
+                    </div>
                 </section>
 			</div>
 		</div>
